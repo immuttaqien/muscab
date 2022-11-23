@@ -20,7 +20,9 @@
             <a href="<?php echo base_url() ?>" class="logo"><img src="<?php echo base_url('static/img/logo.png') ?>" width="120"></a>
         </div>
         <div class="col-md-6 col-md-offset-3">
-            <h1 class="text-center"><a href="<?php echo base_url() ?>" class="logo">PIMPINAN CABANG PEMUDA PERSATUAN ISLAM BANJARAN</a></h1>
-            <p class="text-center"><a href="<?php echo base_url() ?>" class="logo">Sekretariat : Jl. Pajagalan No. 115 Banjaran Desa/ Kecamatan Banjaran Kabupaten Bandung<br>Kode Pos 40377 Email : pemudapersisbanjaran@gmail.com</a></p>
+            <h1 class="text-center"><a href="<?php echo base_url() ?>" class="logo">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</a></h1>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <p class="text-center"><a href="<?php echo base_url() ?>" class="logo">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"<br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H</a></p>
         </div>
     </div>

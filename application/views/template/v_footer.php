@@ -8,6 +8,7 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url('static/vendor/jquery/jquery.min.js') ?>"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url('static/vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
@@ -43,23 +44,27 @@ $(document).ready(function() {
     });
 
     $("input[type='radio']").click(function(){
-        var sampingan = $("input[name='sampingan']:checked").val();
-        if(sampingan=='N'){
-            $('#pekerjaan_sampingan').hide();
+        var kehadiran = $("input[name='kehadiran']:checked").val();
+        if(kehadiran==1){
+            $('#form_alasan').hide();
         }else{
-            $('#pekerjaan_sampingan').show();
-        }
-    });
-
-    $("input[type='radio']").click(function(){
-        var organisasi_lain = $("input[name='organisasi_lain']:checked").val();
-        if(organisasi_lain=='N'){
-            $('#nama_organisasi').hide();
-        }else{
-            $('#nama_organisasi').show();
+            $('#form_alasan').show();
         }
     });
 });
+
+$( function() {
+    var anggota = [
+        <?php
+        foreach($anggota as $list){
+            echo '"'.$list->nama_lengkap.'", ';
+        }
+        ?>
+    ];
+    $( "#nama" ).autocomplete({
+      source: anggota
+    });
+  } );
 </script>
 
 </body>

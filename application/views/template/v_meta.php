@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sensus Anggota | PC. Pemuda Persis Banjaran</title>
+    <title>Musyawarah Cabang XII Pemuda Persis Banjaran</title>
 
 
     <!-- <link rel="shortcut icon" href="<?php echo base_url('static/favicon.ico') ?>"> -->
@@ -32,6 +32,8 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url('static/vendor/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <style type="text/css">
         .center{

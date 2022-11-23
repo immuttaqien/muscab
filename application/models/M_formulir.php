@@ -2,9 +2,9 @@
 
 class M_formulir extends CI_Model {
 
-	public function daftar_jamaah()
+	public function daftar_anggota()
 	{
-		return $this->db->get('sn_jamaah');
+		return $this->db->get('sn_anggota');
 	}
 
 	public function daftar_pekerjaan()

@@ -19,11 +19,7 @@ class Formulir extends CI_Controller {
 		
 		$data = array(
 			'page' => 'index',
-			'jamaah' => $this->m_formulir->daftar_jamaah()->result(),
-			// 'pekerjaan' => $this->m_formulir->daftar_pekerjaan()->result(),
-			// 'pendidikan' => $this->m_formulir->daftar_pendidikan()->result(),
-			// 'pendapatan' => $this->m_formulir->daftar_pendapatan()->result(),
-			// 'tanggungan' => $this->m_formulir->daftar_tanggungan()->result()
+			'anggota' => $this->m_formulir->daftar_anggota()->result(),
 		);
 
 		$this->load->view('content/v_formulir', $data);
