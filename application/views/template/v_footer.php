@@ -57,12 +57,32 @@ $( function() {
     var anggota = [
         <?php
         foreach($anggota as $list){
-            echo '"'.$list->nama_lengkap.'", ';
+            // echo '"'.$list->nama_lengkap.'", ';
+            echo '{
+                    value: "'.$list->anggota_id.'",
+                    label: "'.$list->nama_lengkap.'",
+                    npa: "'.$list->npa.'",
+                    jamaah: "'.$list->jamaah.'"
+                  }, ';
         }
         ?>
     ];
     $( "#nama" ).autocomplete({
-      source: anggota
+      // source: anggota
+      minLength: 0,
+      source: anggota,
+      focus: function( event, ui ) {
+        $( "#nama" ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#nama" ).val( ui.item.label );
+        $( "#anggota_id" ).val( ui.item.value );
+        $( "#npa" ).val( ui.item.npa );
+        $( "#jamaah" ).val( ui.item.jamaah );
+ 
+        return false;
+      }
     });
   } );
 </script>

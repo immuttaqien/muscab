@@ -31,7 +31,7 @@ if($this->session->flashdata()){
                             <div class="form-group">
                                 <label>Nama Anggota</label>
                                 <input id="nama" type="text" class="form-control" name="nama" required>
-                                <input type="hidden" name="anggota_id" value="" required>
+                                <input id="anggota_id" type="hidden" name="anggota_id" required>
                             </div>
                             <div class="form-group">
                                 <label>NPA</label>

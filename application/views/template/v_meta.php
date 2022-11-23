@@ -32,8 +32,23 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url('static/vendor/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
-    
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <style>
+    .ui-autocomplete {
+        max-height: 200px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+    }
+    /* IE 6 doesn't support max-height
+    * we use height instead, but this forces the menu to always be this tall
+    */
+    * html .ui-autocomplete {
+        height: 200px;
+    }
+    </style>
 
     <style type="text/css">
         .center{
