@@ -65,7 +65,7 @@ if($this->session->flashdata()){
                                 <label>Alasan</label>
                                 <textarea id="alasan" name="alasan" class="form-control" rows="5"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                     </div>
                     <!-- /.col-lg-6 (nested) -->

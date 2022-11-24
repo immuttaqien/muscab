@@ -20,13 +20,10 @@ class Main extends CI_Controller {
 		$this->load->view('template/v_menu');
 		
 		$data = array(
-			'anggota' => $this->m_main->jumlah_anggota(),
-			'jamaah' => $this->m_main->jumlah_jamaah(),
-			'pekerjaan' => $this->m_main->jumlah_pekerjaan(),
-			'pendidikan' => $this->m_main->jumlah_pendidikan(),
-			'pendapatan' => $this->m_main->jumlah_pendapatan(),
-			'tanggungan' => $this->m_main->jumlah_tanggungan(),
-			'stat_jamaah' => $this->m_main->stat_jamaah()->result()
+			'jumlah_anggota' => $this->m_main->jumlah_anggota(),
+			'stat_jamaah' => $this->m_main->stat_jamaah()->result(),
+			'stat_seluruh' => $this->m_main->stat_seluruh()->row(),
+			'data_jamaah' => $this->m_main->data_jamaah()->result()
 		);
 
 		$this->load->view('content/v_main', $data);

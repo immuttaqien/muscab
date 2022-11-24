@@ -24,6 +24,11 @@
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url('static/dist/js/sb-admin-2.js') ?>"></script>
 
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 
@@ -85,6 +90,101 @@ $( function() {
       }
     });
   } );
+</script>
+
+<script type="text/javascript">
+Highcharts.chart('kehadiran', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [
+            <?php
+            foreach($stat_jamaah as $jamaah){
+                $persen = ($jamaah->hadir/$jumlah_anggota)*100;
+
+                echo '{
+                    name: "'.$jamaah->jamaah.'",
+                    y: '.$persen.'
+                },';
+            }
+            ?>
+        ]
+    }]
+});
+
+Highcharts.chart('keseluruhan', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Hadir',
+            y: <?php echo ($stat_seluruh->hadir/$jumlah_anggota)*100; ?>
+        }, {
+            name: 'Tidak Hadir',
+            y: <?php echo ($stat_seluruh->tidak/$jumlah_anggota)*100; ?>
+        },  {
+            name: 'Ragu-Ragu',
+            y: <?php echo ($stat_seluruh->ragu/$jumlah_anggota)*100; ?>
+        }, {
+            name: 'Belum Konfirmasi',
+            y: <?php echo ($stat_seluruh->alfa/$jumlah_anggota)*100; ?>
+        }]
+    }]
+});
 </script>
 
 </body>
