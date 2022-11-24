@@ -86,17 +86,72 @@ break;
 case 'detail':
 ?>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <h2 class="page-header">Form Inventarisasi Data Pokok Anggota Pemuda Persis Cabang Banjaran</h2>
     </div>
-</div>
+</div> -->
 
 <?php
 if($this->session->flashdata()){
     echo '<div class="alert alert-'.$this->session->flashdata('type').' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'.$this->session->flashdata('message').'</div>';
 }            
 ?>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Detail Kehadiran Peserta
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <!-- <h3>Data Pribadi</h3> -->
+                        <div class="form-group">
+                            <label>NPA</label>
+                            <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->npa ?></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Anggota</label>
+                            <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->nama_lengkap ?></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Pimpinan Jama'ah</label>
+                            <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->jamaah ?></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->email ?></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor HP Aktif</label>
+                            <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->handphone ?></p>
+                        </div>
+                        <p class="text-center">Info Pelaksanaan Musyawarah Cabang XII Pemuda Persis Banjaran</p>
+                        <p class="text-center"><img width="120" src="<?php echo base_url('media/qrcode/'.$detail->qrcode) ?>"></p>
+                        <!-- <div class="form-group">
+                            <label style="display:block;">Hadir Muscab</label>
+                            <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->kehadiran ?></p>
+                        </div> -->
+                        <!-- <div class="form-group" id="form_alasan" style="display:none">
+                            <label>Alasan</label>
+                            <p class="form-control-static"><?php echo $detail->alasan ?></p>
+                        </div> -->
+                        <a class="btn btn-default" href="<?php echo base_url(); ?>">Kembali</a>
+                        <a class="btn btn-success" href="<?php echo base_url(); ?>" style="float: right;">Download</a>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 
 <?php
 break;

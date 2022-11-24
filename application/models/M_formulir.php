@@ -13,24 +13,14 @@ class M_formulir extends CI_Model {
 		$this->db->update($table, $data, array('anggota_id' => $anggota_id));
 	}
 
-	public function daftar_pekerjaan()
+	public function daftar_jamaah()
 	{
-		return $this->db->get('sn_pekerjaan');
+		return $this->db->get('sn_jamaah');
 	}
 
-	public function daftar_pendidikan()
+	public function detail_anggota($anggota_id)
 	{
-		return $this->db->get('sn_pendidikan');
-	}
-
-	public function daftar_pendapatan()
-	{
-		return $this->db->get('sn_pendapatan');
-	}
-
-	public function daftar_tanggungan()
-	{
-		return $this->db->get('sn_tanggungan');
+		return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->where('a.anggota_id', $anggota_id)->get();
 	}
 
 	public function cek_nomor($nomor)

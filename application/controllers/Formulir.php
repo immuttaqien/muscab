@@ -7,8 +7,6 @@ class Formulir extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_formulir');
-		$this->load->model('m_riwayat');
-		$this->load->model('m_anggota');
 		// $this->session->sess_destroy();
 	}
 
@@ -33,13 +31,13 @@ class Formulir extends CI_Controller {
 
 		$data = array(
 			'page' => 'detail',
-			'jamaah' => $this->m_formulir->daftar_jamaah()->result(),
-			'pekerjaan' => $this->m_formulir->daftar_pekerjaan()->result(),
-			'pendidikan' => $this->m_formulir->daftar_pendidikan()->result(),
-			'pendapatan' => $this->m_formulir->daftar_pendapatan()->result(),
-			'tanggungan' => $this->m_formulir->daftar_tanggungan()->result(),
-			'riwayat' => $this->m_riwayat->daftar_riwayat($anggota_id)->result(),
-			'detail' => $this->m_anggota->detail_anggota($anggota_id)->row()
+			// 'jamaah' => $this->m_formulir->daftar_jamaah()->result(),
+			// 'pekerjaan' => $this->m_formulir->daftar_pekerjaan()->result(),
+			// 'pendidikan' => $this->m_formulir->daftar_pendidikan()->result(),
+			// 'pendapatan' => $this->m_formulir->daftar_pendapatan()->result(),
+			// 'tanggungan' => $this->m_formulir->daftar_tanggungan()->result(),
+			// 'riwayat' => $this->m_riwayat->daftar_riwayat($anggota_id)->result(),
+			'detail' => $this->m_formulir->detail_anggota($anggota_id)->row()
 		);
 
 		$this->load->view('content/v_formulir', $data);
@@ -84,24 +82,47 @@ class Formulir extends CI_Controller {
 	public function simpan_kehadiran()
 	{
 		$anggota_id = $this->input->post('anggota_id');
+		$npa = $this->input->post('npa');
 		$email = $this->input->post('email');
 		$handphone = $this->input->post('handphone');
 		$kehadiran = $this->input->post('kehadiran');
 		$alasan = $this->input->post('alasan');	
 
+		if($kehadiran==1){
+			$this->load->library('ciqrcode'); //pemanggilan library QR CODE
+	 
+	        $config['cacheable']    = true; //boolean, the default is true
+	        $config['cachedir']     = './media/'; //string, the default is application/cache/
+	        $config['errorlog']     = './media/'; //string, the default is application/logs/
+	        $config['imagedir']     = './media/qrcode/'; //direktori penyimpanan qr code
+	        $config['quality']      = true; //boolean, the default is true
+	        $config['size']         = '1024'; //interger, the default is 1024
+	        $config['black']        = array(224,255,255); // array, default is array(255,255,255)
+	        $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+	        $this->ciqrcode->initialize($config);
+	 
+	        $qrcode = $npa.'.png'; //buat name dari qr code sesuai dengan npa
+	        $alasan = NULL;
+	 
+	        $params['data'] = $npa; //data yang akan di jadikan QR CODE
+	        $params['level'] = 'H'; //H=High
+	        $params['size'] = 10;
+	        $params['savename'] = FCPATH.$config['imagedir'].$qrcode; //simpan image QR CODE ke folder assets/images/
+	        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE	
+		}else $qrcode = NULL;
+
 		$data = array(
 			'email' => $email,
 			'handphone' => $handphone,
 			'kehadiran' => $kehadiran,
-			'alasan' => $alasan
+			'alasan' => $alasan,
+			'qrcode' => $qrcode
 		);
 		$this->m_formulir->update_kehadiran('sn_anggota', $data, $anggota_id);	
 		
 		$this->session->set_flashdata('type', 'success');
 		$this->session->set_flashdata('message', 'Terima kasih telah melakukan konfirmasi kehadiran.');
 
-		header('location:'.$_SERVER['HTTP_REFERER']);
-
-		// redirect('riwayat/index/'.$anggota_id);
+		if($kehadiran==1) redirect('formulir/detail/'.$anggota_id); else header('location:'.$_SERVER['HTTP_REFERER']);
 	}
 }
