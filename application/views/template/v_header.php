@@ -19,6 +19,16 @@
 
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
+            <a href="<?php echo base_url('main') ?>">
+                <i class="fa fa-dashboard fa-fw"></i> Dasbor
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="<?php echo base_url('anggota') ?>">
+                <i class="fa fa-users fa-fw"></i> Konfirmasi
+            </a>
+        </li>
+        <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
@@ -28,7 +38,6 @@
                 <li><a href="<?php echo base_url('login/logout') ?>" onclick="return confirm('Apakah Anda yakin akan logout ?')"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
-            <!-- /.dropdown-user -->
         </li>
         <!-- /.dropdown -->
     </ul>

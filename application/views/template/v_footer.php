@@ -54,6 +54,7 @@ $(document).ready(function() {
             $('#form_alasan').hide();
         }else{
             $('#form_alasan').show();
+            $("#alasan").prop('required', true);
         }
     });
 

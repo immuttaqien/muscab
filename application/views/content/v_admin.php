@@ -127,10 +127,10 @@ break;
 case 'edit':
 ?>
 
-<div id="page-wrapper">
+<div id="page-wrapper" style="margin:0">
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Edit Data Admin <a href="<?php echo base_url('admin') ?>" class="btn btn-primary" style="float:right"><i class="fa fa-angle-double-left"></i> Kembali</a></h2>
+        <h2 class="page-header">Setting</h2>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -145,7 +145,7 @@ if($this->session->flashdata()){
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Form Edit Data Admin
+                Form Setting
             </div>
             <div class="panel-body">
                 <div class="row">

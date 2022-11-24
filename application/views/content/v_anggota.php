@@ -5,7 +5,7 @@ switch($page){
 case 'index':
 ?>
 
-<div id="page-wrapper">
+<div id="page-wrapper" style="margin:0">
 <div class="row">
     <div class="col-lg-12">
         <h2 class="page-header">Konfirmasi 

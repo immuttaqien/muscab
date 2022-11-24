@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-<div id="page-wrapper">
+<div id="page-wrapper" style="margin:0">
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Dasbor</h1>
