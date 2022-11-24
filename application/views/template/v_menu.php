@@ -7,7 +7,7 @@
               <a href="<?php echo base_url('main') ?>"><i class="fa fa-dashboard fa-fw"></i> Dasbor</a>
           </li>
           <li>
-              <a href="<?php echo base_url('anggota') ?>"><i class="fa fa-users fa-fw"></i> Anggota</a>
+              <a href="<?php echo base_url('anggota') ?>"><i class="fa fa-users fa-fw"></i> Konfirmasi</a>
           </li>
       </ul>
   </div>

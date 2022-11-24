@@ -4,8 +4,18 @@ class M_anggota extends CI_Model {
 
 	public function daftar_anggota($jamaah_id)
 	{
-		if($jamaah_id==0) return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->order_by('a.nama_lengkap', 'ASC')->get();
-		else return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->where('a.jamaah_id', $jamaah_id)->order_by('a.nama_lengkap', 'ASC')->get();
+		if($jamaah_id==0) return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->order_by('a.anggota_id', 'ASC')->get();
+		else return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->where('a.jamaah_id', $jamaah_id)->order_by('a.anggota_id', 'ASC')->get();
+	}
+
+	public function daftar_jamaah()
+	{
+		return $this->db->get('sn_jamaah');
+	}
+
+	public function lihat_alasan($anggota_id)
+	{
+		return $this->db->select('alasan')->from('sn_anggota')->where('anggota_id', $anggota_id)->get();
 	}
 
 	public function detail_anggota($anggota_id)

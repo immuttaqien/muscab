@@ -68,13 +68,18 @@
                             echo '<tr>
                                     <td class="center" width="10">'.$i.'</td>
                                     <td>'.$data->jamaah.'</td>
-                                    <td class="center" style="color:#3c763d">'.$data->hadir.'</td>
-                                    <td class="center" style="color:#a94442">'.$data->tidak.'</td>
-                                    <td class="center" style="color:#8a6d3b">'.$data->ragu.'</td>
-                                    <td class="center" style="color:#31708f">'.$data->alfa.'</td>
+                                    <td class="center">'.$data->hadir.'</td>
+                                    <td class="center">'.$data->tidak.'</td>
+                                    <td class="center">'.$data->ragu.'</td>
+                                    <td class="center">'.$data->alfa.'</td>
                                     <td class="center">'.$data->total.'</td>
                                  </tr>';
                             $i++;
+
+                            // style="color:#3c763d"
+                            // style="color:#a94442"
+                            // style="color:#8a6d3b"
+                            // style="color:#31708f"
                         }
                         ?>
                     </tbody>

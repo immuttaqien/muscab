@@ -56,19 +56,37 @@ $(document).ready(function() {
             $('#form_alasan').show();
         }
     });
+
+    // $('.lihat').click(function(){
+    // $('.lihat').on('click',function(){
+    $('#dataTables-example').on('click', '.lihat', function(){
+        var anggota_id = $(this).attr("anggota_id");
+
+        $.ajax({
+            url: '<?php echo base_url('anggota/lihat_alasan'); ?>',
+            method: 'post',
+            data: {anggota_id:anggota_id},
+            success:function(data){
+                $('#myModal').modal("show");
+                $('#tampil_modal').html(data);            
+            }
+        });
+    });
 });
 
 $( function() {
     var anggota = [
         <?php
-        foreach($anggota as $list){
-            // echo '"'.$list->nama_lengkap.'", ';
-            echo '{
-                    value: "'.$list->anggota_id.'",
-                    label: "'.$list->nama_lengkap.'",
-                    npa: "'.$list->npa.'",
-                    jamaah: "'.$list->jamaah.'"
-                  }, ';
+        if(isset($anggota)){
+            foreach($anggota as $list){
+                // echo '"'.$list->nama_lengkap.'", ';
+                echo '{
+                        value: "'.$list->anggota_id.'",
+                        label: "'.$list->nama_lengkap.'",
+                        npa: "'.$list->npa.'",
+                        jamaah: "'.$list->jamaah.'"
+                      }, ';
+            }
         }
         ?>
     ];
@@ -126,13 +144,15 @@ Highcharts.chart('kehadiran', {
         colorByPoint: true,
         data: [
             <?php
-            foreach($stat_jamaah as $jamaah){
-                $persen = ($jamaah->hadir/$jumlah_anggota)*100;
+            if(isset($stat_jamaah)){                
+                foreach($stat_jamaah as $jamaah){
+                    $persen = ($jamaah->hadir/$jumlah_anggota)*100;
 
-                echo '{
-                    name: "'.$jamaah->jamaah.'",
-                    y: '.$persen.'
-                },';
+                    echo '{
+                        name: "'.$jamaah->jamaah.'",
+                        y: '.$persen.'
+                    },';
+                }
             }
             ?>
         ]
@@ -170,19 +190,21 @@ Highcharts.chart('keseluruhan', {
     series: [{
         name: 'Brands',
         colorByPoint: true,
-        data: [{
-            name: 'Hadir',
-            y: <?php echo ($stat_seluruh->hadir/$jumlah_anggota)*100; ?>
-        }, {
-            name: 'Tidak Hadir',
-            y: <?php echo ($stat_seluruh->tidak/$jumlah_anggota)*100; ?>
-        },  {
-            name: 'Ragu-Ragu',
-            y: <?php echo ($stat_seluruh->ragu/$jumlah_anggota)*100; ?>
-        }, {
-            name: 'Belum Konfirmasi',
-            y: <?php echo ($stat_seluruh->alfa/$jumlah_anggota)*100; ?>
-        }]
+        data: [
+            {
+                name: 'Hadir',
+                y: <?php if(isset($stat_seluruh)) echo ($stat_seluruh->hadir/$jumlah_anggota)*100; else echo 0; ?>
+            }, {
+                name: 'Tidak Hadir',
+                y: <?php if(isset($stat_seluruh)) echo ($stat_seluruh->tidak/$jumlah_anggota)*100; else echo 0; ?>
+            },  {
+                name: 'Ragu-Ragu',
+                y: <?php if(isset($stat_seluruh)) echo ($stat_seluruh->ragu/$jumlah_anggota)*100; else echo 0; ?>
+            }, {
+                name: 'Belum Konfirmasi',
+                y: <?php if(isset($stat_seluruh)) echo ($stat_seluruh->alfa/$jumlah_anggota)*100; else echo 0; ?>
+            }
+        ]
     }]
 });
 </script>

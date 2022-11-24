@@ -8,12 +8,11 @@ case 'index':
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Data Anggota 
-            <a href="<?php echo base_url('anggota/tambah') ?>" class="btn btn-primary" style="float:right">+ Tambah</a>
-            <a href="<?php echo base_url('anggota/ekspor/'.$jamaah_id) ?>" class="btn btn-primary" style="float:right; margin-right: 5px"><i class="fa fa-download"></i> Ekspor</a>  
+        <h2 class="page-header">Konfirmasi 
+            <a href="<?php echo base_url('anggota/download/'.$jamaah_id) ?>" class="btn btn-primary" style="float:right; margin-right: 5px"><i class="fa fa-download"></i> Download</a>  
 
-            <select class="form-control" onchange="window.location.href='<?php echo base_url('anggota/index/'); ?>'+ this.value" style="width: 12%;margin-right:5px;height:34px;display:inline;float:right">
-            <option value="0">-- Jamaah</option>
+            <select class="form-control" onchange="window.location.href='<?php echo base_url('anggota/index/'); ?>'+ this.value" style="width: 13%;margin-right:5px;height:34px;display:inline;float:right">
+            <option value="0">Pilih Jamaah</option>
             <?php
             foreach($jamaah as $j){
                 echo '<option value="'.$j->jamaah_id.'"'; if($j->jamaah_id==$jamaah_id) echo ' selected'; echo '>'.$j->nama.'</option>';
@@ -34,7 +33,7 @@ case 'index':
         ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Daftar Data Anggota
+                Daftar Konfirmasi Kehadiran Anggota
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -42,11 +41,13 @@ case 'index':
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nomor Anggota</th>
+                            <th>NPA</th>
                             <th>Nama Lengkap</th>
                             <th>Jamaah</th>
-                            <th>Foto</th>
-                            <th>Aksi</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Konfirmasi</th>
+                            <th>Alasan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,11 +56,13 @@ case 'index':
                         foreach($anggota as $list){
                             echo '<tr>
                                     <td class="center" width="10">'.$i.'</td>
-                                    <td>'.$list->nomor_anggota.'</td>
+                                    <td>'.$list->npa.'</td>
                                     <td>'.$list->nama_lengkap.'</td>
                                     <td>'.$list->jamaah.'</td>
-                                    <td class="center">'; if($list->foto) echo '<a target="_blank" href="'.base_url('media/foto/'.$list->foto).'">Lihat Foto</a>'; else echo '-'; echo '</td>
-                                    <td class="center">'.anchor('anggota/detail/'.$list->anggota_id, 'Detail').' | '.anchor('anggota/edit/'.$list->anggota_id, 'Edit').' | '.anchor('anggota/hapus_anggota/'.$list->anggota_id, 'Hapus', 'onclick="return confirm(\'Apakah Anda yakin akan menghapus data anggota ini ?\')"').'</td>
+                                    <td>'; if($list->email) echo $list->email; else echo '<center>-</center>'; echo '</td>
+                                    <td>'; if($list->handphone) echo $list->handphone; else echo '<center>-</center>'; echo '</td>
+                                    <td>'; if($list->kehadiran=='1') echo 'Hadir'; elseif($list->kehadiran=='2') echo 'Tidak Hadir'; elseif($list->kehadiran=='3') echo 'Ragu-Ragu'; else echo 'Belum Konfirmasi'; echo '</td>
+                                    <td class="center">'; if($list->kehadiran=='2' || $list->kehadiran=='3') echo '<a data-toggle="modal" href="#myModal" class="lihat btn btn-primary" anggota_id="'.$list->anggota_id.'">Lihat</a>'; else echo '-'; echo '</td>
                                  </tr>';
                             $i++;
                         }
@@ -73,6 +76,23 @@ case 'index':
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="judul">Alasan</h4>
+            </div>
+            <div class="modal-body" id="tampil_modal"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
 
 <?php
@@ -108,7 +128,7 @@ if($this->session->flashdata()){
                             <h3>Data Pribadi</h3>
                             <div class="form-group">
                                 <label>Nomor Anggota</label>
-                                <input type="text" class="form-control" name="nomor_anggota">
+                                <input type="text" class="form-control" name="npa">
                             </div>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
@@ -360,7 +380,7 @@ if($this->session->flashdata()){
                         <h3>Data Pribadi</h3>
                         <div class="form-group">
                             <label>Nomor Anggota</label>
-                            <input readonly type="text" class="form-control" name="nomor_anggota" value="<?php echo $detail->nomor_anggota ?>">
+                            <input readonly type="text" class="form-control" name="npa" value="<?php echo $detail->npa ?>">
                         </div>
                         <div class="form-group">
                             <label>Nama Lengkap</label>
@@ -650,7 +670,7 @@ if($this->session->flashdata()){
                             <h3>Data Pribadi</h3>
                             <div class="form-group">
                                 <label>Nomor Anggota</label>
-                                <input type="text" class="form-control" name="nomor_anggota" value="<?php echo $edit->nomor_anggota ?>">
+                                <input type="text" class="form-control" name="npa" value="<?php echo $edit->npa ?>">
                             </div>
                             <div class="form-group">
                                 <label>Nama Lengkap</label>

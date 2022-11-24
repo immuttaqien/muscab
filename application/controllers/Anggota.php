@@ -27,13 +27,21 @@ class Anggota extends CI_Controller {
 		$data = array(
 			'page' => 'index',
 			'jamaah_id' => $jamaah_id,
-			'jamaah' => $this->m_formulir->daftar_jamaah()->result(),
+			'jamaah' => $this->m_anggota->daftar_jamaah()->result(),
 			'anggota' => $this->m_anggota->daftar_anggota($jamaah_id)->result()
 		);
 
 		$this->load->view('content/v_anggota', $data);
 		$this->load->view('template/v_footer');
 	}
+
+	public function lihat_alasan()
+    {
+    	$anggota_id = $this->input->post('anggota_id');
+    	$alasan = $this->m_anggota->lihat_alasan($anggota_id)->row();
+
+    	echo $alasan->alasan;
+    }
 
 	public function tambah()
 	{
@@ -301,81 +309,44 @@ class Anggota extends CI_Controller {
 		header('location:'.$_SERVER['HTTP_REFERER']);
 	}
 
-	public function ekspor($jamaah_id=0)
+	public function download($jamaah_id=0)
 	{
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->setCellValue('A1', 'No');
-		$sheet->setCellValue('B1', 'Nomor Anggota');
+		$sheet->setCellValue('B1', 'NPA');
 		$sheet->setCellValue('C1', 'Nama Lengkap');
-		$sheet->setCellValue('D1', 'Tempat Lahir');
-		$sheet->setCellValue('E1', 'Tanggal Lahir');
-		$sheet->setCellValue('F1', 'Status Menikah');
-		$sheet->setCellValue('G1', 'Golongan Darah');
-		$sheet->setCellValue('H1', 'Email');
-		$sheet->setCellValue('I1', 'Nomor Telepon');
-		$sheet->setCellValue('J1', 'Nomor WhatsApp');
-		$sheet->setCellValue('K1', 'Alamat');
-		$sheet->setCellValue('L1', 'Nomor KTP');
-		$sheet->setCellValue('M1', 'Tahun Masuk');
-		$sheet->setCellValue('N1', 'Jamaah');
-		$sheet->setCellValue('O1', 'Hobi');
-		$sheet->setCellValue('P1', 'Keahlian');
-		$sheet->setCellValue('Q1', 'Pekerjaan Pokok');
-		$sheet->setCellValue('R1', 'Instansi Pekerjaan');
-		$sheet->setCellValue('S1', 'Pekerjaan Sampingan');
-		$sheet->setCellValue('T1', 'Pendidikan');
-		$sheet->setCellValue('U1', 'Pendapatan');
-		$sheet->setCellValue('V1', 'Tanggungan');
-		$sheet->setCellValue('W1', 'Organisasi Lain');
-		$sheet->setCellValue('X1', 'Foto');
-		$sheet->setCellValue('Y1', 'Nama Istri');
-		$sheet->setCellValue('Z1', 'Anggota Otonom Persis');
-		$sheet->setCellValue('AA1', 'Jumlah Anak');
-		$sheet->setCellValue('AB1', 'Waktu Input');
+		$sheet->setCellValue('D1', 'Jamaah');
+		$sheet->setCellValue('E1', 'Email');
+		$sheet->setCellValue('F1', 'Nomor HP');
+		$sheet->setCellValue('G1', 'Kehadiran');
+		$sheet->setCellValue('H1', 'Alasan');
+		$sheet->setCellValue('I1', 'Waktu Konfirmasi');
 		
-		$anggota = $this->m_anggota->get_anggota($jamaah_id)->result();
+		$anggota = $this->m_anggota->daftar_anggota($jamaah_id)->result();
 		$no = 1; $x = 2;
 
-		// $nikah = ''; $otonom = ''; $pekerjaan = '';
 		foreach($anggota as $row){
-			if($row->status_nikah=='Y') $nikah = 'Menikah'; else $nikah = 'Belum Menikah';
-			if($row->anggota_otonom=='Y') $otonom = 'Ya'; else $otonom = 'Tidak';
-			if($row->pekerjaan_id==6) $pekerjaan = $row->pekerjaan_lain; else $pekerjaan = $row->pekerjaan;
+			if($row->kehadiran=='1') $kehadiran = 'Hadir'; elseif($row->kehadiran=='2') $kehadiran = 'Tidak Hadir'; elseif($row->kehadiran=='3') $kehadiran = 'Ragu-Ragu'; else $kehadiran = 'Belum Konfirmasi';
+			if($row->alasan) $alasan = $row->alasan; else $alasan = '-';
+			if($row->kehadiran==0) $waktu = '-'; else $waktu = $row->time_entry;
+			if($row->email) $email = $row->email; else $email = '-';
+			if($row->handphone) $handphone = $row->handphone; else $handphone = '-';
 
 			$sheet->setCellValue('A'.$x, $no++);
-			$sheet->setCellValueExplicit('B'.$x, $row->nomor_anggota, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+			$sheet->setCellValueExplicit('B'.$x, $row->npa, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
 			$sheet->setCellValue('C'.$x, $row->nama_lengkap);
-			$sheet->setCellValue('D'.$x, $row->tempat_lahir);
-			$sheet->setCellValue('E'.$x, date('d-m-Y', strtotime($row->tanggal_lahir)));
-			$sheet->setCellValue('F'.$x, $nikah);
-			$sheet->setCellValue('G'.$x, $row->golongan_darah);
-			$sheet->setCellValue('H'.$x, $row->email);
-			$sheet->setCellValue('I'.$x, $row->telepon);
-			$sheet->setCellValue('J'.$x, $row->whatsapp);
-			$sheet->setCellValue('K'.$x, $row->alamat);
-			$sheet->setCellValueExplicit('L'.$x, $row->nomor_ktp, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-			$sheet->setCellValue('M'.$x, $row->tahun_masuk);
-			$sheet->setCellValue('N'.$x, $row->jamaah);
-			$sheet->setCellValue('O'.$x, $row->hobi);
-			$sheet->setCellValue('P'.$x, $row->keahlian);
-			$sheet->setCellValue('Q'.$x, $pekerjaan);
-			$sheet->setCellValue('R'.$x, $row->nama_instansi);
-			$sheet->setCellValue('S'.$x, $row->pekerjaan_sampingan);
-			$sheet->setCellValue('T'.$x, $row->pendidikan);
-			$sheet->setCellValue('U'.$x, $row->pendapatan);
-			$sheet->setCellValue('V'.$x, $row->tanggungan);
-			$sheet->setCellValue('W'.$x, $row->nama_organisasi);
-			$sheet->setCellValue('X'.$x, $row->foto);
-			$sheet->setCellValue('Y'.$x, $row->nama_istri);
-			$sheet->setCellValue('Z'.$x, $otonom);
-			$sheet->setCellValue('AA'.$x, $row->jumlah_anak);
-			$sheet->setCellValue('AB'.$x, $row->time_entry);
+			$sheet->setCellValue('D'.$x, $row->jamaah);
+			$sheet->setCellValue('E'.$x, $email);
+			$sheet->setCellValueExplicit('F'.$x, $handphone, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
+			$sheet->setCellValue('G'.$x, $kehadiran);
+			$sheet->setCellValue('H'.$x, $alasan);
+			$sheet->setCellValue('I'.$x, $waktu);
 			$x++;
 		}
 
 		$writer = new Xlsx($spreadsheet);
-		$filename = 'Data Sensus Anggota';
+		$filename = 'Daftar Konfirmasi Kehadiran Anggota Musyawarah Cabang XII Pemuda Persis Banjaran';
 		
 		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
