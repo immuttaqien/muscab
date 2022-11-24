@@ -128,8 +128,10 @@ if($this->session->flashdata()){
                             <label>Nomor HP Aktif</label>
                             <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->handphone ?></p>
                         </div>
-                        <p class="text-center">Info Pelaksanaan Musyawarah Cabang XII Pemuda Persis Banjaran</p>
+                        <p class="text-center">Info Pelaksanaan Musyawarah Cabang XII Pemuda Persis Banjaran.</p>
                         <p class="text-center"><img width="120" src="<?php echo base_url('media/qrcode/'.$detail->qrcode) ?>"></p>
+                        <p class="text-center">Silakan klik tombol Download untuk mendapatkan bukti konfirmasi kehadiran peserta.</p>
+                        <hr>
                         <!-- <div class="form-group">
                             <label style="display:block;">Hadir Muscab</label>
                             <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->kehadiran ?></p>
@@ -139,7 +141,7 @@ if($this->session->flashdata()){
                             <p class="form-control-static"><?php echo $detail->alasan ?></p>
                         </div> -->
                         <a class="btn btn-default" href="<?php echo base_url(); ?>">Kembali</a>
-                        <a class="btn btn-success" href="<?php echo base_url(); ?>" style="float: right;">Download</a>
+                        <a class="btn btn-success" href="<?php echo base_url('formulir/download/'.$detail->anggota_id); ?>" style="float: right;">Download</a>
                     </div>
                     <!-- /.col-lg-6 (nested) -->
                 </div>

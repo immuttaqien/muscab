@@ -32,51 +32,11 @@ class Formulir extends CI_Controller {
 		$data = array(
 			'page' => 'detail',
 			// 'jamaah' => $this->m_formulir->daftar_jamaah()->result(),
-			// 'pekerjaan' => $this->m_formulir->daftar_pekerjaan()->result(),
-			// 'pendidikan' => $this->m_formulir->daftar_pendidikan()->result(),
-			// 'pendapatan' => $this->m_formulir->daftar_pendapatan()->result(),
-			// 'tanggungan' => $this->m_formulir->daftar_tanggungan()->result(),
-			// 'riwayat' => $this->m_riwayat->daftar_riwayat($anggota_id)->result(),
 			'detail' => $this->m_formulir->detail_anggota($anggota_id)->row()
 		);
 
 		$this->load->view('content/v_formulir', $data);
 		$this->load->view('template/v_footer');
-	}
-
-	public function cek_anggota()
-	{
-		$nomor_anggota = $this->input->post('nomor_anggota');
-		$nama_lengkap = $this->input->post('nama_lengkap');
-		$tempat_lahir = $this->input->post('tempat_lahir');
-		$tanggal_lahir = $this->input->post('tanggal_lahir');
-
-		$cek_anggota = $this->m_formulir->cek_anggota($nomor_anggota, $nama_lengkap, $tempat_lahir, $tanggal_lahir)->num_rows();
-		if($cek_anggota > 0){
-			$this->session->set_flashdata('type', 'success');
-			$this->session->set_flashdata('message', 'Data Anda sudah ada di sistem. Terimakasih.');
-
-			header('location:'.$_SERVER['HTTP_REFERER']);
-
-			// $anggota = $this->m_formulir->cek_anggota($nomor_anggota, $nama_lengkap, $tempat_lahir, $tanggal_lahir)->row();
-
-			// redirect(base_url('formulir/detail/'.$anggota->anggota_id));
-		}else{
-			$data_session = array(
-				'nomor_anggota' => $nomor_anggota,
-				'nama_lengkap' => $nama_lengkap,
-				'tempat_lahir' => $tempat_lahir,
-				'tanggal_lahir' => $tanggal_lahir,
-				'lanjut' => true
-			);
- 
-			$this->session->set_userdata($data_session);
-
-			$this->session->set_flashdata('type', 'success');
-			$this->session->set_flashdata('message', 'Silakan lengkapi form dibawah ini.');
- 
-			header('location:'.$_SERVER['HTTP_REFERER']);
-		}
 	}
 
 	public function simpan_kehadiran()
@@ -124,5 +84,17 @@ class Formulir extends CI_Controller {
 		$this->session->set_flashdata('message', 'Terima kasih telah melakukan konfirmasi kehadiran.');
 
 		if($kehadiran==1) redirect('formulir/detail/'.$anggota_id); else header('location:'.$_SERVER['HTTP_REFERER']);
+	}
+
+	public function download($anggota_id){
+		$detail = $this->m_formulir->detail_anggota($anggota_id)->row();
+	    $data = array(
+	        "detail" => $detail
+	    );
+
+	    $this->load->library('pdf');
+	    $this->pdf->setPaper('A5', 'potrait');
+	    $this->pdf->filename = $detail->npa.'_'.$detail->nama_lengkap.'.pdf';
+	    $this->pdf->load_view('content/v_download', $data);
 	}
 }

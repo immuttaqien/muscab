@@ -1,0 +1,52 @@
+<?php //print_r($detail); die();
+$path_logo = './static/img/logo.png';
+$type_logo = pathinfo($path_logo, PATHINFO_EXTENSION);
+$data_logo = file_get_contents($path_logo);
+$img_logo = 'data:image/' . $type_logo . ';base64,' . base64_encode($data_logo);
+
+$path_qr = './media/qrcode/'.$detail->qrcode;
+$type_qr = pathinfo($path_qr, PATHINFO_EXTENSION);
+$data_qr = file_get_contents($path_qr);
+$img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><?php echo $detail->npa.'_'.$detail->nama_lengkap ?></title>
+</head>
+<body>
+<p style="text-align: center;"><img width="120" src="<?php echo $img_logo ?>"></p>
+<h1 style="text-align: center;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h1>
+<p style="text-align: center;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"<br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H</p>
+<table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1"><colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup>
+<tbody>
+<tr style="height: 18px;">
+<td style="border-width: 0px; height: 18px; padding: 5px;"><strong>NPA</strong></td>
+<td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->npa ?></td>
+</tr>
+<tr style="height: 18px;">
+<td style="border-width: 0px; height: 18px; padding: 5px;"><strong>Nama Lengkap</strong></td>
+<td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->nama_lengkap ?></td>
+</tr>
+<tr style="height: 18px;">
+<td style="border-width: 0px; height: 18px; padding: 5px;"><strong>Pimpinan Jama'ah</strong></td>
+<td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->jamaah ?></td>
+</tr>
+<tr style="height: 18px;">
+<td style="border-width: 0px; height: 18px; padding: 5px;"><strong>Email</strong></td>
+<td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->email ?></td>
+</tr>
+<tr style="height: 18px;">
+<td style="border-width: 0px; height: 18px; padding: 5px;"><strong>Nomor HP Aktif</strong></td>
+<td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->handphone ?></td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;">Info Pelaksanaan Musyawarah Cabang XII Pemuda Persis Banjaran.</p>
+<p style="text-align: center;"><img width="120" src="<?php echo $img_qr ?>"></p>
+<p style="text-align: center;">Silakan bawa bukti konfirmasi kehadiran peserta ini ketika melakukan check in di tempat.</p>
+</body>
+</html>

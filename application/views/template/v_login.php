@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sensus Anggota | PC. Pemuda Persis Banjaran</title>
+    <title>Musyawarah Cabang XII Pemuda Persis Banjaran</title>
     
     <!-- <link rel="shortcut icon" href="<?php echo base_url('static/favicon.ico') ?>"> -->
 
