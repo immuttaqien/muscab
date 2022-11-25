@@ -52,6 +52,7 @@ $(document).ready(function() {
         var kehadiran = $("input[name='kehadiran']:checked").val();
         if(kehadiran==1){
             $('#form_alasan').hide();
+            $("#alasan").prop('required', false);
         }else{
             $('#form_alasan').show();
             $("#alasan").prop('required', true);

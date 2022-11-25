@@ -76,7 +76,8 @@ class Formulir extends CI_Controller {
 			'handphone' => $handphone,
 			'kehadiran' => $kehadiran,
 			'alasan' => $alasan,
-			'qrcode' => $qrcode
+			'qrcode' => $qrcode,
+			'time_entry' => date('Y-m-d H:i:s')
 		);
 		$this->m_formulir->update_kehadiran('sn_anggota', $data, $anggota_id);	
 		
