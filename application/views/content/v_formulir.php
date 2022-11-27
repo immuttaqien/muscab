@@ -66,6 +66,7 @@ if($this->session->flashdata()){
                                 <textarea id="alasan" name="alasan" class="form-control" rows="5"></textarea>
                             </div>
                             <button type="submit" class="btn btn-success">Simpan</button>
+                            <a id="download" class="btn btn-success" href="<?php echo base_url('formulir/download/1'); ?>" style="float: right; display: none;">Download</a>
                         </form>
                     </div>
                     <!-- /.col-lg-6 (nested) -->
@@ -128,7 +129,20 @@ if($this->session->flashdata()){
                             <label>Nomor HP Aktif</label>
                             <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->handphone ?></p>
                         </div>
-                        <p class="text-center">Info Pelaksanaan Musyawarah Cabang XII Pemuda Persis Banjaran.</p>
+                        <div class="form-group">
+                            <p class="form-control-static" style="display: inline-block;">
+                                <b>Check In Peserta</b><br>
+                                Hari, Tanggal : Ahad, 18 Desember 2022<br>
+                                Waktu : 06:30 - 07:30 WIB<br>
+                                Lokasi : Aula Pesantren Persis 31 Banjaran
+                            </p>
+                            <p class="form-control-static" style="display: inline-block; float: right; text-align: right;">
+                                <b>Pakaian</b><br>
+                                Kemeja Batik<br>
+                                Celana Panjang<br>
+                                Bersepatu
+                            </p>
+                        </div>
                         <p class="text-center"><img width="120" src="<?php echo base_url('media/qrcode/'.$detail->qrcode) ?>"></p>
                         <p class="text-center">Silakan klik tombol Download untuk mendapatkan bukti konfirmasi kehadiran peserta.</p>
                         <hr>

@@ -86,6 +86,9 @@ $( function() {
                         value: "'.$list->anggota_id.'",
                         label: "'.$list->nama_lengkap.'",
                         npa: "'.$list->npa.'",
+                        email: "'.$list->email.'",
+                        handphone: "'.$list->handphone.'",
+                        kehadiran: "'.$list->kehadiran.'",
                         jamaah: "'.$list->jamaah.'"
                       }, ';
             }
@@ -105,6 +108,17 @@ $( function() {
         $( "#anggota_id" ).val( ui.item.value );
         $( "#npa" ).val( ui.item.npa );
         $( "#jamaah" ).val( ui.item.jamaah );
+        $( "#email" ).val( ui.item.email );
+        $( "#handphone" ).val( ui.item.handphone );
+
+        if(ui.item.kehadiran==1) $("#hadir").prop("checked", true);
+        else if(ui.item.kehadiran==2) $("#tidak").prop("checked", true);
+        else if(ui.item.kehadiran==3) $("#ragu").prop("checked", true);
+
+        if(ui.item.kehadiran==1){
+            $("#download").attr("href", "<?php echo base_url('formulir/download/'); ?>" + ui.item.value);
+            $("#download").show();
+        }else $("#download").hide();
  
         return false;
       }

@@ -16,10 +16,14 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo $detail->npa.'_'.$detail->nama_lengkap ?></title>
+	<style type="text/css">
+		@page { margin: 18px; }
+		body { margin: 18px; }
+	</style>
 </head>
 <body>
 <p style="text-align: center;"><img width="120" src="<?php echo $img_logo ?>"></p>
-<h1 style="text-align: center;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h1>
+<h2 style="text-align: center;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h2>
 <p style="text-align: center;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"<br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H</p>
 <table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1"><colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup>
 <tbody>
@@ -43,9 +47,30 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 <td style="border-width: 0px; height: 18px; padding: 5px;"><strong>Nomor HP Aktif</strong></td>
 <td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->handphone ?></td>
 </tr>
+<tr style="height: 18px;">
+<td style="border-width: 0px; height: 18px; padding: 5px;"><b>Check In Peserta</b><br>
+    Hari, Tanggal : Ahad, 18 Desember 2022<br>
+    Waktu : 06:30 - 07:30 WIB<br>
+    Lokasi : Aula Pesantren Persis 31 Banjaran</td>
+<td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><b>Pakaian</b><br>
+    Kemeja Batik<br>
+    Celana Panjang<br>
+    Bersepatu</td>
+</tr>
 </tbody>
 </table>
-<p style="text-align: center;">Info Pelaksanaan Musyawarah Cabang XII Pemuda Persis Banjaran.</p>
+<!-- <p>
+    <b>Check In Peserta</b><br>
+    Hari, Tanggal : Ahad, 18 Desember 2022<br>
+    Waktu : 06:30 - 07:30 WIB<br>
+    Lokasi : Aula Pesantren Persis 31 Banjaran
+</p>
+<p>
+    <b>Pakaian :</b><br>
+    - Kemeja Batik<br>
+    - Celana Panjang<br>
+    - Bersepatu
+</p> -->
 <p style="text-align: center;"><img width="120" src="<?php echo $img_qr ?>"></p>
 <p style="text-align: center;">Silakan bawa bukti konfirmasi kehadiran peserta ini ketika melakukan check in di tempat.</p>
 </body>
