@@ -22,10 +22,20 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 	</style>
 </head>
 <body>
-<p style="text-align: center;"><img width="120" src="<?php echo $img_logo ?>"></p>
+<div style="width: 25%; float: left;"><img width="120" src="<?php echo $img_logo ?>"></div>
+<div style="width: 75%; float: right;">
+    <h2 style="text-align: center; margin: 0;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h2>
+    <p style="text-align: center; margin: 0; font-size: 13px;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"</p>
+</div>
+<div style="clear: both;"></div><hr>
+<h3 style="text-align: center; font-weight: bold;">BUKTI PENDAFTARAN</h3>
+
+<!-- <p style="text-align: center;"><img width="120" src="<?php echo $img_logo ?>"></p>
 <h2 style="text-align: center;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h2>
-<p style="text-align: center;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"<br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H</p>
-<table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1"><colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup>
+<p style="text-align: center;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"</p> -->
+<!-- <br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H -->
+<table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1">
+<!-- <colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup> -->
 <tbody>
 <tr style="height: 18px;">
 <td style="border-width: 0px; height: 18px; padding: 5px;"><strong>NPA</strong></td>
@@ -47,10 +57,14 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 <td style="border-width: 0px; height: 18px; padding: 5px;"><strong>Nomor HP Aktif</strong></td>
 <td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><?php echo $detail->handphone ?></td>
 </tr>
+</tbody>
+</table>
+<table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1">
+<tbody>
 <tr style="height: 18px;">
 <td style="border-width: 0px; height: 18px; padding: 5px;"><b>Check In Peserta</b><br>
     Hari, Tanggal : Ahad, 18 Desember 2022<br>
-    Waktu : 06:30 - 07:30 WIB<br>
+    Waktu : 06:00 - 07:00 WIB<br>
     Lokasi : Aula Pesantren Persis 31 Banjaran</td>
 <td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><b>Pakaian</b><br>
     Kemeja Batik<br>

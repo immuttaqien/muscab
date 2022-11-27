@@ -21,7 +21,7 @@ if($this->session->flashdata()){
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Konfirmasi Kehadiran Peserta
+                Pendaftaran Peserta Muscab
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -133,7 +133,7 @@ if($this->session->flashdata()){
                             <p class="form-control-static" style="display: inline-block;">
                                 <b>Check In Peserta</b><br>
                                 Hari, Tanggal : Ahad, 18 Desember 2022<br>
-                                Waktu : 06:30 - 07:30 WIB<br>
+                                Waktu : 06:00 - 07:00 WIB<br>
                                 Lokasi : Aula Pesantren Persis 31 Banjaran
                             </p>
                             <p class="form-control-static" style="display: inline-block; float: right; text-align: right;">

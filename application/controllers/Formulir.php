@@ -97,5 +97,7 @@ class Formulir extends CI_Controller {
 	    $this->pdf->setPaper('A5', 'potrait');
 	    $this->pdf->filename = $detail->npa.'_'.$detail->nama_lengkap.'.pdf';
 	    $this->pdf->load_view('content/v_download', $data);
+	    
+		// $this->load->view('content/v_download', $data);
 	}
 }
