@@ -75,6 +75,10 @@ class ComposerStaticInitbc9ba1144858572fffa8678a35023890
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'c' => 
+        array (
+            'chriskacerguis\\RestServer\\' => 26,
+        ),
         'Z' => 
         array (
             'ZipStream\\' => 10,
@@ -127,6 +131,10 @@ class ComposerStaticInitbc9ba1144858572fffa8678a35023890
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'chriskacerguis\\RestServer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chriskacerguis/codeigniter-restserver/src',
         ),
         'ZipStream\\' => 
         array (

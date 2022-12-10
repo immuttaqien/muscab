@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '80fdb8c94c918c79e4a51c4a925ff7ca0f308215',
+    'reference' => '7f20d0f9bfe14d4668a217ecea5e9fc23273486a',
     'name' => 'codeigniter/framework',
   ),
   'versions' => 
   array (
+    'chriskacerguis/codeigniter-restserver' => 
+    array (
+      'pretty_version' => '3.1.4',
+      'version' => '3.1.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f386f4e0013daadaa213681a0a41af69aa81d9de',
+    ),
     'codeigniter/framework' => 
     array (
       'pretty_version' => 'dev-master',
@@ -18,7 +27,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '80fdb8c94c918c79e4a51c4a925ff7ca0f308215',
+      'reference' => '7f20d0f9bfe14d4668a217ecea5e9fc23273486a',
     ),
     'doctrine/instantiator' => 
     array (
