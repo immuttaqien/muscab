@@ -11,9 +11,9 @@ class M_kehadiran extends CI_Model {
 		}
 	}
 
-	function data_barang($id_user, $id_barang)
+	function data_npa($npa)
 	{
-		return $this->db->select('a.*, b.nama_barang, b.keterangan, b.satuan, b.harga_beli')->from('barang_level a')->join('barang b', 'b.id_barang = a.id_barang')->where('a.id_user', $id_user)->where('a.id_barang', $id_barang)->where('a.nama_level', 'Standar')->get();
+		return $this->db->select('a.*, b.nama AS nama_jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->where('a.npa', $npa)->get();
 	}
 
 	function harga_jual($id_user, $id_barang)
