@@ -47,6 +47,7 @@ case 'index':
                             <th>Email</th>
                             <th>Nomor HP</th>
                             <th>Konfirmasi</th>
+                            <th>Check In</th>
                             <th>Alasan</th>
                         </tr>
                     </thead>
@@ -61,7 +62,8 @@ case 'index':
                                     <td>'.$list->jamaah.'</td>
                                     <td>'; if($list->email) echo $list->email; else echo '<center>-</center>'; echo '</td>
                                     <td>'; if($list->handphone) echo $list->handphone; else echo '<center>-</center>'; echo '</td>
-                                    <td>'; if($list->kehadiran=='1') echo 'Hadir'; elseif($list->kehadiran=='2') echo 'Tidak Hadir'; elseif($list->kehadiran=='3') echo 'Ragu-Ragu'; else echo 'Belum Konfirmasi'; echo '</td>
+                                    <td>'; if($list->kehadiran=='1') echo 'Hadir'; elseif($list->kehadiran=='2') echo 'Tidak Hadir'; elseif($list->kehadiran=='3') echo 'Ragu-Ragu'; else echo 'Tidak Konfirmasi'; echo '</td>
+                                    <td>'; if($list->checkin=='0') echo 'Tidak'; elseif($list->checkin=='1') echo 'Ya'; echo '</td>
                                     <td class="center">'; if($list->kehadiran=='2' || $list->kehadiran=='3') echo '<a data-toggle="modal" href="#myModal" class="lihat btn btn-primary" anggota_id="'.$list->anggota_id.'">Lihat</a>'; else echo '-'; echo '</td>
                                  </tr>';
                             $i++;

@@ -320,8 +320,9 @@ class Anggota extends CI_Controller {
 		$sheet->setCellValue('E1', 'Email');
 		$sheet->setCellValue('F1', 'Nomor HP');
 		$sheet->setCellValue('G1', 'Kehadiran');
-		$sheet->setCellValue('H1', 'Alasan');
-		$sheet->setCellValue('I1', 'Waktu Konfirmasi');
+		$sheet->setCellValue('H1', 'Check In');
+		$sheet->setCellValue('I1', 'Alasan');
+		$sheet->setCellValue('J1', 'Waktu Konfirmasi');
 		
 		$anggota = $this->m_anggota->daftar_anggota($jamaah_id)->result();
 		$no = 1; $x = 2;
@@ -332,6 +333,7 @@ class Anggota extends CI_Controller {
 			if($row->kehadiran==0) $waktu = '-'; else $waktu = $row->time_entry;
 			if($row->email) $email = $row->email; else $email = '-';
 			if($row->handphone) $handphone = $row->handphone; else $handphone = '-';
+			if($row->checkin=='0') $checkin = 'Tidak'; elseif($row->checkin=='1') $checkin = 'Ya';
 
 			$sheet->setCellValue('A'.$x, $no++);
 			$sheet->setCellValueExplicit('B'.$x, $row->npa, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
@@ -340,8 +342,9 @@ class Anggota extends CI_Controller {
 			$sheet->setCellValue('E'.$x, $email);
 			$sheet->setCellValueExplicit('F'.$x, $handphone, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
 			$sheet->setCellValue('G'.$x, $kehadiran);
-			$sheet->setCellValue('H'.$x, $alasan);
-			$sheet->setCellValue('I'.$x, $waktu);
+			$sheet->setCellValue('H'.$x, $checkin);
+			$sheet->setCellValue('I'.$x, $alasan);
+			$sheet->setCellValue('J'.$x, $waktu);
 			$x++;
 		}
 
