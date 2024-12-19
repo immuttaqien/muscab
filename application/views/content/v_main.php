@@ -24,22 +24,18 @@
     </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 Persentase Kehadiran Keseluruhan
             </div>
-            <!-- /.panel-heading -->
             <div class="panel-body">
                 <div id="keseluruhan"></div>
             </div>
-            <!-- /.panel-body -->
         </div>
-        <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
+</div> -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -56,8 +52,6 @@
                             <th class="center">Pimpinan Jamaah</th>
                             <th class="center">Hadir</th>
                             <th class="center">Tidak Hadir</th>
-                            <th class="center">Ragu-Ragu</th>
-                            <th class="center">Belum Konfirmasi</th>
                             <th class="center">Jumlah Anggota</th>
                         </tr>
                     </thead>
@@ -69,9 +63,7 @@
                                     <td class="center" width="10">'.$i.'</td>
                                     <td>'.$data->jamaah.'</td>
                                     <td class="center">'.$data->hadir.'</td>
-                                    <td class="center">'.$data->tidak.'</td>
-                                    <td class="center">'.$data->ragu.'</td>
-                                    <td class="center">'.$data->alfa.'</td>
+                                    <td class="center">'.($data->total-$data->hadir).'</td>
                                     <td class="center">'.$data->total.'</td>
                                  </tr>';
                             $i++;

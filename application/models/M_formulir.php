@@ -5,7 +5,7 @@ class M_formulir extends CI_Model {
 	public function daftar_anggota()
 	{
 		// return $this->db->get('sn_anggota');
-		return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->order_by('a.nama_lengkap', 'ASC')->get();
+		return $this->db->select('a.*, b.nama AS jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->order_by('a.anggota_id', 'ASC')->get();
 	}
 
 	public function update_kehadiran($table, $data, $anggota_id)
