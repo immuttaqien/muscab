@@ -81,14 +81,15 @@ $( function() {
         <?php
         if(isset($anggota)){
             foreach($anggota as $list){
-                // echo '"'.$list->nama_lengkap.'", ';
+                if($list->checkin==1) $checkin = date('H:i:s', strtotime($list->time_checkin)); else $checkin = '-';
+                if($list->election==1) $election = date('H:i:s', strtotime($list->time_election)); else $election = '-';
+
                 echo '{
                         value: "'.$list->anggota_id.'",
                         label: "'.$list->nama_lengkap.'",
                         npa: "'.$list->npa.'",
-                        email: "'.$list->email.'",
-                        handphone: "'.$list->handphone.'",
-                        kehadiran: "'.$list->kehadiran.'",
+                        checkin: "'.$checkin.'",
+                        election: "'.$election.'",
                         jamaah: "'.$list->jamaah.'"
                       }, ';
             }
@@ -108,17 +109,19 @@ $( function() {
         $( "#anggota_id" ).val( ui.item.value );
         $( "#npa" ).val( ui.item.npa );
         $( "#jamaah" ).val( ui.item.jamaah );
-        $( "#email" ).val( ui.item.email );
-        $( "#handphone" ).val( ui.item.handphone );
+        $( "#checkin" ).val( ui.item.checkin );
+        $( "#election" ).val( ui.item.election );
+        $( "#qrcode" ).attr("src", "<?php echo base_url('media/qrcode/'); ?>" + ui.item.value + ".png");
+        $( "#qrcode" ).show();
 
-        if(ui.item.kehadiran==1) $("#hadir").prop("checked", true);
-        else if(ui.item.kehadiran==2) $("#tidak").prop("checked", true);
-        else if(ui.item.kehadiran==3) $("#ragu").prop("checked", true);
+        // if(ui.item.kehadiran==1) $("#hadir").prop("checked", true);
+        // else if(ui.item.kehadiran==2) $("#tidak").prop("checked", true);
+        // else if(ui.item.kehadiran==3) $("#ragu").prop("checked", true);
 
-        if(ui.item.kehadiran==1){
-            $("#download").attr("href", "<?php echo base_url('formulir/download/'); ?>" + ui.item.value);
-            $("#download").show();
-        }else $("#download").hide();
+        // if(ui.item.kehadiran==1){
+        //     $("#download").attr("href", "<?php echo base_url('formulir/download/'); ?>" + ui.item.value);
+        //     $("#download").show();
+        // }else $("#download").hide();
  
         return false;
       }
@@ -128,6 +131,85 @@ $( function() {
 
 <script type="text/javascript">
 Highcharts.chart('kehadiran', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: ''
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        categories: [
+            <?php
+            if(isset($stat_jamaah)){                
+                foreach($stat_jamaah as $jamaah){
+                    echo '"'.$jamaah->jamaah.'", ';
+                }
+            }
+            ?>
+        ],
+        crosshair: true,
+        accessibility: {
+            description: 'Pimpinan Jamaah'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah Anggota'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' Orang'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Hadir',
+            data: [
+                <?php
+                if(isset($stat_jamaah)){                
+                    foreach($stat_jamaah as $jamaah){
+                        echo $jamaah->hadir.', ';
+                    }
+                }
+                ?>
+            ]
+        },
+        {
+            name: 'Tidak Hadir',
+            data: [
+                <?php
+                if(isset($stat_jamaah)){                
+                    foreach($stat_jamaah as $jamaah){
+                        echo $jamaah->tidak.', ';
+                    }
+                }
+                ?>]
+        },
+        {
+            name: 'Pemilihan',
+            data: [
+                <?php
+                if(isset($stat_jamaah)){                
+                    foreach($stat_jamaah as $jamaah){
+                        echo $jamaah->pemilihan.', ';
+                    }
+                }
+                ?>]
+        }
+    ]
+});
+
+
+Highcharts.chart('pie-chart', {
     chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,

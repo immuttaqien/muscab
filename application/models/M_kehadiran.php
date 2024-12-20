@@ -5,15 +5,30 @@ class M_kehadiran extends CI_Model {
 	function daftar_kehadiran($jamaah_id=0)
 	{
 		if($jamaah_id==0){
-			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.kehadiran='1') AS hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS checkin, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.kehadiran='1') AS total_hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_checkin FROM sn_jamaah a ORDER BY a.jamaah_id ASC");
+			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS hadir, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_hadir 
+				FROM sn_jamaah a ORDER BY a.jamaah_id ASC");
 		}else{
-			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.kehadiran='1') AS hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS checkin, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.kehadiran='1') AS total_hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_checkin FROM sn_jamaah a WHERE a.jamaah_id='$jamaah_id' ORDER BY a.jamaah_id ASC");
+			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_hadir FROM sn_jamaah a WHERE a.jamaah_id='$jamaah_id' ORDER BY a.jamaah_id ASC");
 		}
 	}
 
-	function data_npa($npa)
+	function daftar_pemilihan($jamaah_id=0)
 	{
-		return $this->db->select('a.*, b.nama AS nama_jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->where('a.npa', $npa)->get();
+		if($jamaah_id==0){
+			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.election='1') AS hadir, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.election='1') AS total_hadir 
+				FROM sn_jamaah a ORDER BY a.jamaah_id ASC");
+		}else{
+			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.election='1') AS hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.election='1') AS total_hadir FROM sn_jamaah a WHERE a.jamaah_id='$jamaah_id' ORDER BY a.jamaah_id ASC");
+		}
+	}
+
+	function data_anggota($anggota_id)
+	{
+		return $this->db->select('a.*, b.nama AS nama_jamaah')->from('sn_anggota a')->join('sn_jamaah b', 'b.jamaah_id = a.jamaah_id')->where('a.anggota_id', $anggota_id)->get();
 	}
 
 	function harga_jual($id_user, $id_barang)
@@ -32,9 +47,9 @@ class M_kehadiran extends CI_Model {
 		return $this->db->insert('barang_level', $level);
 	}
 
-	function checkin_peserta($data, $npa)
+	function checkin_peserta($data, $anggota_id)
 	{
-		return $this->db->update('sn_anggota', $data, array('npa' => $npa));
+		return $this->db->update('sn_anggota', $data, array('anggota_id' => $anggota_id));
 	}
 
 	function cek_data($table, $id_barang)
@@ -42,9 +57,9 @@ class M_kehadiran extends CI_Model {
 		return $this->db->get_where($table, array('id_barang' => $id_barang));
 	}
 
-	function cek_npa($npa)
+	function cek_anggota($anggota_id)
 	{
-		return $this->db->get_where('sn_anggota', array('npa' => $npa));
+		return $this->db->get_where('sn_anggota', array('anggota_id' => $anggota_id));
 	}
 
 	function delete_barang($id_barang){

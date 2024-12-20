@@ -314,42 +314,30 @@ class Anggota extends CI_Controller {
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
 		$sheet->setCellValue('A1', 'No');
-		$sheet->setCellValue('B1', 'NPA');
+		$sheet->setCellValue('B1', 'NIAT');
 		$sheet->setCellValue('C1', 'Nama Lengkap');
 		$sheet->setCellValue('D1', 'Jamaah');
-		$sheet->setCellValue('E1', 'Email');
-		$sheet->setCellValue('F1', 'Nomor HP');
-		$sheet->setCellValue('G1', 'Kehadiran');
-		$sheet->setCellValue('H1', 'Check In');
-		$sheet->setCellValue('I1', 'Alasan');
-		$sheet->setCellValue('J1', 'Waktu Konfirmasi');
+		$sheet->setCellValue('E1', 'Check In');
+		$sheet->setCellValue('F1', 'Pemilihan');
 		
 		$anggota = $this->m_anggota->daftar_anggota($jamaah_id)->result();
 		$no = 1; $x = 2;
 
 		foreach($anggota as $row){
-			if($row->kehadiran=='1') $kehadiran = 'Hadir'; elseif($row->kehadiran=='2') $kehadiran = 'Tidak Hadir'; elseif($row->kehadiran=='3') $kehadiran = 'Ragu-Ragu'; else $kehadiran = 'Belum Konfirmasi';
-			if($row->alasan) $alasan = $row->alasan; else $alasan = '-';
-			if($row->kehadiran==0) $waktu = '-'; else $waktu = $row->time_entry;
-			if($row->email) $email = $row->email; else $email = '-';
-			if($row->handphone) $handphone = $row->handphone; else $handphone = '-';
-			if($row->checkin=='0') $checkin = 'Tidak'; elseif($row->checkin=='1') $checkin = 'Ya';
+            if($row->checkin==1) $checkin = date('H:i:s', strtotime($row->time_checkin)); else $checkin = '-';
+            if($row->election==1) $election = date('H:i:s', strtotime($row->time_election)); else $election = '-';
 
 			$sheet->setCellValue('A'.$x, $no++);
 			$sheet->setCellValueExplicit('B'.$x, $row->npa, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
 			$sheet->setCellValue('C'.$x, $row->nama_lengkap);
 			$sheet->setCellValue('D'.$x, $row->jamaah);
-			$sheet->setCellValue('E'.$x, $email);
-			$sheet->setCellValueExplicit('F'.$x, $handphone, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-			$sheet->setCellValue('G'.$x, $kehadiran);
-			$sheet->setCellValue('H'.$x, $checkin);
-			$sheet->setCellValue('I'.$x, $alasan);
-			$sheet->setCellValue('J'.$x, $waktu);
+			$sheet->setCellValue('E'.$x, $checkin);
+			$sheet->setCellValue('F'.$x, $election);
 			$x++;
 		}
 
 		$writer = new Xlsx($spreadsheet);
-		$filename = 'Daftar Konfirmasi Kehadiran Anggota Musyawarah Cabang XII Pemuda Persis Banjaran';
+		$filename = 'Daftar Kehadiran Anggota Musyawarah Cabang IX PC Persis Banjaran';
 		
 		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 

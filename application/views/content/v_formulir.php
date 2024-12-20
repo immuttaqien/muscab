@@ -21,20 +21,21 @@ if($this->session->flashdata()){
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Pendaftaran Peserta Muscab
+                Pengecekan Peserta Muscab
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <?php echo form_open('formulir/simpan_kehadiran'); ?>
+                        <?php echo form_open('formulir/cek_kehadiran'); ?>
                             <!-- <h3>Data Pribadi</h3> -->
+                            <center><img id="qrcode" style="display: none; width: 100px"></center>
                             <div class="form-group">
                                 <label>Nama Anggota</label>
                                 <input id="nama" type="text" class="form-control" name="nama" required>
                                 <input id="anggota_id" type="hidden" name="anggota_id" required>
                             </div>
                             <div class="form-group">
-                                <label>NPA</label>
+                                <label>NIAT</label>
                                 <input id="npa" readonly type="text" class="form-control" name="npa">
                             </div>
                             <div class="form-group">
@@ -42,31 +43,15 @@ if($this->session->flashdata()){
                                 <input id="jamaah" readonly type="text" class="form-control" name="jamaah">
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input id="email" type="email" class="form-control" name="email" required="">
+                                <label>Check In</label>
+                                <input id="checkin" readonly type="text" class="form-control" name="checkin">
                             </div>
                             <div class="form-group">
-                                <label>Nomor HP Aktif</label>
-                                <input id="handphone" type="number" class="form-control" name="handphone" required="">
+                                <label>Pemilihan</label>
+                                <input id="election" readonly type="text" class="form-control" name="election">
                             </div>
-                            <div class="form-group">
-                                <label style="display:block;">Hadir Muscab</label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="kehadiran" id="hadir" value="1" checked=""> Hadir
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="kehadiran" id="tidak" value="2"> Tidak Hadir
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="kehadiran" id="ragu" value="3"> Ragu-Ragu
-                                </label>
-                            </div>
-                            <div class="form-group" id="form_alasan" style="display:none">
-                                <label>Alasan</label>
-                                <textarea id="alasan" name="alasan" class="form-control" rows="5"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                            <a id="download" class="btn btn-success" href="<?php echo base_url('formulir/download/1'); ?>" style="float: right; display: none;">Download</a>
+                            <!-- <button type="submit" class="btn btn-success">Lihat</button> -->
+                            <!-- <a id="download" class="btn btn-success" href="<?php echo base_url('formulir/download/1'); ?>" style="float: right; display: none;">Download</a> -->
                         </form>
                     </div>
                     <!-- /.col-lg-6 (nested) -->
@@ -110,7 +95,7 @@ if($this->session->flashdata()){
                     <div class="col-md-6 col-md-offset-3">
                         <!-- <h3>Data Pribadi</h3> -->
                         <div class="form-group">
-                            <label>NPA</label>
+                            <label>NIAT</label>
                             <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->npa ?></p>
                         </div>
                         <div class="form-group">

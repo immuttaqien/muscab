@@ -8,7 +8,7 @@ case 'index':
 <div id="page-wrapper" style="margin:0">
 <div class="row">
     <div class="col-lg-12">
-        <h2 class="page-header">Konfirmasi 
+        <h2 class="page-header">Anggota 
             <a href="<?php echo base_url('anggota/download/'.$jamaah_id) ?>" class="btn btn-primary" style="float:right; margin-right: 5px"><i class="fa fa-download"></i> Download</a>  
 
             <select class="form-control" onchange="window.location.href='<?php echo base_url('anggota/index/'); ?>'+ this.value" style="width: 13%;margin-right:5px;height:34px;display:inline;float:right">
@@ -33,38 +33,35 @@ case 'index':
         ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Daftar Konfirmasi Kehadiran Anggota
+                Daftar Kehadiran Anggota
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>NPA</th>
-                            <th>Nama Lengkap</th>
-                            <th>Jamaah</th>
-                            <th>Email</th>
-                            <th>Nomor HP</th>
-                            <th>Konfirmasi</th>
-                            <th>Check In</th>
-                            <th>Alasan</th>
+                            <th class="center">No</th>
+                            <th class="center">NIAT</th>
+                            <th class="center">Nama Lengkap</th>
+                            <th class="center">Jamaah</th>
+                            <th class="center">Check In</th>
+                            <th class="center">Pemilihan</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $i = 1;
                         foreach($anggota as $list){
+                            if($list->checkin==1) $checkin = date('H:i:s', strtotime($list->time_checkin)); else $checkin = '-';
+                            if($list->election==1) $election = date('H:i:s', strtotime($list->time_election)); else $election = '-';
+                
                             echo '<tr>
                                     <td class="center" width="10">'.$i.'</td>
-                                    <td>'.$list->npa.'</td>
+                                    <td class="center">'.$list->npa.'</td>
                                     <td>'.$list->nama_lengkap.'</td>
-                                    <td>'.$list->jamaah.'</td>
-                                    <td>'; if($list->email) echo $list->email; else echo '<center>-</center>'; echo '</td>
-                                    <td>'; if($list->handphone) echo $list->handphone; else echo '<center>-</center>'; echo '</td>
-                                    <td>'; if($list->kehadiran=='1') echo 'Hadir'; elseif($list->kehadiran=='2') echo 'Tidak Hadir'; elseif($list->kehadiran=='3') echo 'Ragu-Ragu'; else echo 'Tidak Konfirmasi'; echo '</td>
-                                    <td>'; if($list->checkin=='0') echo 'Tidak'; elseif($list->checkin=='1') echo 'Ya'; echo '</td>
-                                    <td class="center">'; if($list->kehadiran=='2' || $list->kehadiran=='3') echo '<a data-toggle="modal" href="#myModal" class="lihat btn btn-primary" anggota_id="'.$list->anggota_id.'">Lihat</a>'; else echo '-'; echo '</td>
+                                    <td class="center">'.$list->jamaah.'</td>
+                                    <td class="center">'.$checkin.'</td>
+                                    <td class="center">'.$election.'</td>
                                  </tr>';
                             $i++;
                         }
