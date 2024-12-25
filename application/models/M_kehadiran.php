@@ -7,10 +7,17 @@ class M_kehadiran extends CI_Model {
 		if($jamaah_id==0){
 			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, 
 				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS hadir, 
-				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_hadir 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.election='1') AS pemilihan, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_hadir, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.election='1') AS total_pemilihan
 				FROM sn_jamaah a ORDER BY a.jamaah_id ASC");
 		}else{
-			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS hadir, (SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_hadir FROM sn_jamaah a WHERE a.jamaah_id='$jamaah_id' ORDER BY a.jamaah_id ASC");
+			return $this->db->query("SELECT a.jamaah_id, a.nama AS jamaah, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.checkin='1') AS hadir, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.jamaah_id=a.jamaah_id AND b.election='1') AS pemilihan, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.checkin='1') AS total_hadir, 
+				(SELECT COUNT(b.anggota_id) FROM sn_anggota b WHERE b.election='1') AS total_pemilihan
+				FROM sn_jamaah a WHERE a.jamaah_id='$jamaah_id' ORDER BY a.jamaah_id ASC");
 		}
 	}
 

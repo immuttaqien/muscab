@@ -3,7 +3,9 @@
 <div id="page-wrapper" style="margin:0">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Dasbor</h1>
+        <h1 class="page-header">Dasbor
+            <a href="<?php echo base_url('main/download') ?>" class="btn btn-primary" style="float:right; margin-right: 5px"><i class="fa fa-download"></i> Download</a> 
+        </h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>

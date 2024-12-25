@@ -18,12 +18,14 @@ class Kehadiran extends RestController {
         $response['code'] = 200;
         $response['message'] = 'success';
         $response['total_kehadiran'] = $daftar_kehadiran[0]->total_hadir;
+        $response['total_pemilihan'] = $daftar_kehadiran[0]->total_pemilihan;
 
         $i = 0;
         foreach($daftar_kehadiran as $kehadiran){
             $response['jamaah'][$i]['jamaah_id'] = (int)$kehadiran->jamaah_id;
             $response['jamaah'][$i]['nama_jamaah'] = $kehadiran->jamaah;
             $response['jamaah'][$i]['kehadiran'] = (int)$kehadiran->hadir;
+            $response['jamaah'][$i]['pemilihan'] = (int)$kehadiran->pemilihan;
 
             $i++;
         }
@@ -53,13 +55,13 @@ class Kehadiran extends RestController {
                 if($checkin){
                     $response['status'] = true;
                     $response['code'] = 201;
-                    $response['message'] = 'Check in berhasil.';
+                    $response['message'] = 'Check in kehadiran berhasil.';
 
                     $this->response($response);
                 }else{
                     $response['status'] = false;
                     $response['code'] = 401;
-                    $response['message'] = 'Check in gagal.';
+                    $response['message'] = 'Check in kehadiran gagal.';
 
                     $this->response($response);
                 }
