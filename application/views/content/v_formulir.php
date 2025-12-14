@@ -13,19 +13,19 @@ case 'index':
 
 <?php
 if($this->session->flashdata()){
-    echo '<div class="alert alert-'.$this->session->flashdata('type').' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'.$this->session->flashdata('message').'</div>';
+    echo '<div class="alert alert-'.$this->session->flashdata('type').' alert-dismissable col-lg-6 col-lg-offset-3"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'.$this->session->flashdata('message').'</div>';
 }            
 ?>
 <!-- /.row -->
-<div class="row">
-    <div class="col-lg-12">
+<div class="row" style="margin-top: 20px;">
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
                 Pendaftaran Peserta Muscab
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-12">
                         <?php echo form_open('formulir/simpan_kehadiran'); ?>
                             <!-- <h3>Data Pribadi</h3> -->
                             <div class="form-group">
@@ -38,7 +38,7 @@ if($this->session->flashdata()){
                                 <input id="npa" readonly type="text" class="form-control" name="npa">
                             </div>
                             <div class="form-group">
-                                <label>Pimpinan Jama'ah</label>
+                                <label>Pimpinan Jamaah</label>
                                 <input id="jamaah" readonly type="text" class="form-control" name="jamaah">
                             </div>
                             <div class="form-group">
@@ -95,19 +95,19 @@ case 'detail':
 
 <?php
 if($this->session->flashdata()){
-    echo '<div class="alert alert-'.$this->session->flashdata('type').' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'.$this->session->flashdata('message').'</div>';
+    echo '<div class="alert alert-'.$this->session->flashdata('type').' alert-dismissable col-lg-6 col-lg-offset-3"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'.$this->session->flashdata('message').'</div>';
 }            
 ?>
 <!-- /.row -->
-<div class="row">
-    <div class="col-lg-12">
+<div class="row" style="margin-top: 20px;">
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
                 Detail Kehadiran Peserta
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-12">
                         <!-- <h3>Data Pribadi</h3> -->
                         <div class="form-group">
                             <label>NPA</label>
@@ -118,7 +118,7 @@ if($this->session->flashdata()){
                             <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->nama_lengkap ?></p>
                         </div>
                         <div class="form-group">
-                            <label>Pimpinan Jama'ah</label>
+                            <label>Pimpinan Jamaah</label>
                             <p class="form-control-static" style="display: inline-block; float: right;"><?php echo $detail->jamaah ?></p>
                         </div>
                         <div class="form-group">
@@ -132,7 +132,7 @@ if($this->session->flashdata()){
                         <div class="form-group">
                             <p class="form-control-static" style="display: inline-block;">
                                 <b>Check In Peserta</b><br>
-                                Hari, Tanggal : Ahad, 18 Desember 2022<br>
+                                Hari, Tanggal : Ahad, 25 Desember 2025<br>
                                 Waktu : 06:00 - 07:00 WIB<br>
                                 Lokasi : Aula Pesantren Persis 31 Banjaran
                             </p>

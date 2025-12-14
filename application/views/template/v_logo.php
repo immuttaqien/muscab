@@ -8,6 +8,9 @@
     color: #449240;
     text-decoration: none;
 }
+.header{
+    font-size: 2.5rem;
+}
 </style>
 
 <body>
@@ -20,9 +23,9 @@
             <a href="<?php echo base_url() ?>" class="logo"><img src="<?php echo base_url('static/img/logo.png') ?>" width="150"></a>
         </div>
         <div class="col-md-6 col-md-offset-3">
-            <h2 class="text-center"><a href="<?php echo base_url() ?>" class="logo">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</a></h2>
+            <h2 class="text-center"><a href="<?php echo base_url() ?>" class="logo header">MUSYAWARAH CABANG XIII<br>PEMUDA PERSIS BANJARAN</a></h2>
         </div>
         <div class="col-md-8 col-md-offset-2">
-            <p class="text-center"><a href="<?php echo base_url() ?>" class="logo">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"<br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H</a></p>
+            <p class="text-center"><a href="<?php echo base_url() ?>" class="logo">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"<br>Kamis, 25 Desember 2025 M / 5 Rajab 1447 H</a></p>
         </div>
     </div>
