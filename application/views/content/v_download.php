@@ -1,5 +1,5 @@
 <?php //print_r($detail); die();
-$path_logo = './static/img/logo.png';
+$path_logo = './static/img/logo-2.png';
 $type_logo = pathinfo($path_logo, PATHINFO_EXTENSION);
 $data_logo = file_get_contents($path_logo);
 $img_logo = 'data:image/' . $type_logo . ';base64,' . base64_encode($data_logo);
@@ -22,17 +22,17 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 	</style>
 </head>
 <body>
-<div style="width: 25%; float: left;"><img width="120" src="<?php echo $img_logo ?>"></div>
-<div style="width: 75%; float: right;">
+<div style="width: 20%; float: left; text-align: center;"><img width="80" src="<?php echo $img_logo ?>"></div>
+<div style="width: 80%; float: right;">
     <h2 style="text-align: center; margin: 0;">MUSYAWARAH CABANG XIII<br>PEMUDA PERSIS BANJARAN</h2>
-    <p style="text-align: center; margin: 0; font-size: 13px;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"</p>
+    <p style="text-align: center; margin: 0; font-size: 13px;">"Meneguhkan Kader Berjiwa Pemimpin dan Mendakwahkan Qur'an Sunnah dalam Segala Ruang dan Waktu"</p>
 </div>
 <div style="clear: both;"></div><hr>
 <h3 style="text-align: center; font-weight: bold;">BUKTI PENDAFTARAN</h3>
 
 <!-- <p style="text-align: center;"><img width="120" src="<?php echo $img_logo ?>"></p>
 <h2 style="text-align: center;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h2>
-<p style="text-align: center;">"Mempertegas Arah Gerakan Pemuda Persis Sebagai Mujahid, Mujadid, Mujtahid, Ashabun dan Hawariyyun Islam"</p> -->
+<p style="text-align: center;">"Meneguhkan Kader Berjiwa Pemimpin dan Mendakwahkan Qur'an Sunnah dalam Segala Ruang dan Waktu"</p> -->
 <!-- <br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H -->
 <table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1">
 <!-- <colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup> -->
