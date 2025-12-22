@@ -8,12 +8,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Musyawarah Cabang XIII Pemuda Persis Banjaran">
+    <meta name="author" content="PC. Pemuda Persis Banjaran">
+    <meta name="keyword" content="Musyawarah, Cabang, Pemuda Persis, Banjaran">
+    <meta name="image" content="<?php echo base_url('static/img/logo-2.png') ?>">
 
     <title>Musyawarah Cabang XIII Pemuda Persis Banjaran</title>
 
-    <!-- <link rel="shortcut icon" href="<?php echo base_url('static/favicon.ico') ?>"> -->
+    <link rel="shortcut icon" href="<?php echo base_url('static/img/logo-2.png') ?>">
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url('static/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
 

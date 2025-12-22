@@ -132,7 +132,7 @@ if($this->session->flashdata()){
                         <div class="form-group">
                             <p class="form-control-static" style="display: inline-block;">
                                 <b>Check In Peserta</b><br>
-                                Hari, Tanggal : Ahad, 25 Desember 2025<br>
+                                Hari, Tanggal : Kamis, 25 Desember 2025<br>
                                 Waktu : 06:00 - 07:00 WIB<br>
                                 Lokasi : Aula Pesantren Persis 31 Banjaran
                             </p>

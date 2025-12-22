@@ -33,7 +33,7 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 <!-- <p style="text-align: center;"><img width="120" src="<?php echo $img_logo ?>"></p>
 <h2 style="text-align: center;">MUSYAWARAH CABANG XII<br>PEMUDA PERSIS BANJARAN</h2>
 <p style="text-align: center;">"Meneguhkan Kader Berjiwa Pemimpin dan Mendakwahkan Qur'an Sunnah dalam Segala Ruang dan Waktu"</p> -->
-<!-- <br>Ahad, 18 Desember 2022 M / 24 Jumadil Ula 1444 H -->
+<!-- <br>Kamis, 18 Desember 2022 M / 24 Jumadil Ula 1444 H -->
 <table style="border-collapse: collapse; width: 100%; height: 36px; border-width: 0px;" border="1">
 <!-- <colgroup><col style="width: 50%;"><col style="width: 50%;"></colgroup> -->
 <tbody>
@@ -63,7 +63,7 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 <tbody>
 <tr style="height: 18px;">
 <td style="border-width: 0px; height: 18px; padding: 5px;"><b>Check In Peserta</b><br>
-    Hari, Tanggal : Ahad, 25 Desember 2025<br>
+    Hari, Tanggal : Kamis, 25 Desember 2025<br>
     Waktu : 06:00 - 07:00 WIB<br>
     Lokasi : Aula Pesantren Persis 31 Banjaran</td>
 <td style="border-width: 0px; height: 18px; text-align: right; padding: 5px;"><b>Pakaian</b><br>
@@ -75,7 +75,7 @@ $img_qr = 'data:image/' . $type_qr . ';base64,' . base64_encode($data_qr);
 </table>
 <!-- <p>
     <b>Check In Peserta</b><br>
-    Hari, Tanggal : Ahad, 18 Desember 2022<br>
+    Hari, Tanggal : Kamis, 18 Desember 2022<br>
     Waktu : 06:30 - 07:30 WIB<br>
     Lokasi : Aula Pesantren Persis 31 Banjaran
 </p>
