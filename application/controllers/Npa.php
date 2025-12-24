@@ -26,7 +26,7 @@ class Npa extends RestController {
 
                 $response['status'] = true;
                 $response['code'] = 200;
-                $response['message'] = '';
+                $response['message'] = 'success';
                 $response['npa'] = $detail->npa;
                 $response['nama_lengkap'] = $detail->nama_lengkap;
                 $response['jamaah_id'] = $detail->jamaah_id;

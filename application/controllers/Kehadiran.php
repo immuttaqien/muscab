@@ -16,7 +16,7 @@ class Kehadiran extends RestController {
 
         $response['status'] = true;
         $response['code'] = 200;
-        $response['message'] = '';
+        $response['message'] = 'success';
         $response['total_konfirmasi'] = $daftar_kehadiran[0]->total_hadir;
         $response['total_kehadiran'] = $daftar_kehadiran[0]->total_checkin;
 
