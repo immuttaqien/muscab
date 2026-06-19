@@ -1,70 +1,105 @@
-###################
-What is CodeIgniter
-###################
+# Musyawarah Cabang Pemuda Persis Banjaran
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Sistem informasi manajemen anggota dan jamaah untuk organisasi tingkat cabang, dibangun dengan CodeIgniter 3.
 
-*******************
-Release Information
-*******************
+## Tech Stack
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+- **Framework**: CodeIgniter 3
+- **Language**: PHP 5.3.7+
+- **Database**: MySQL
+- **Export**: PHPSpreadsheet (Excel), Dompdf (PDF)
+- **API**: CodeIgniter REST Server
 
-**************************
-Changelog and New Features
-**************************
+## Fitur
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+- Manajemen anggota (pendaftaran, data diri, NPA)
+- Manajemen jamaah
+- Data pekerjaan, pendidikan, dan pendapatan anggota
+- Data tanggungan anggota
+- Pencatatan kehadiran
+- Riwayat dan histori aktivitas
+- Export data ke Excel dan PDF
+- REST API
+- Autentikasi admin
 
-*******************
-Server Requirements
-*******************
+## Struktur Proyek
 
-PHP version 5.6 or newer is recommended.
+```
+application/
+├── controllers/    # Controller (Admin, Anggota, Jamaah, Kehadiran, dll.)
+├── models/         # Model (M_anggota, M_jamaah, M_kehadiran, dll.)
+├── views/          # Tampilan
+├── config/         # Konfigurasi aplikasi dan database
+├── helpers/        # Helper functions
+├── libraries/      # Library tambahan
+└── core/           # Override core CodeIgniter
+system/             # CodeIgniter framework
+vendor/             # Composer dependencies
+media/              # File media upload
+static/             # Aset statis (CSS, JS, gambar)
+```
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+## Instalasi
 
-************
-Installation
-************
+**Prasyarat**: PHP 5.6+, MySQL, Composer
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+```bash
+# Clone repository
+git clone https://github.com/immuttaqien/muscab.git
+cd muscab
 
-*******
-License
-*******
+# Install dependencies
+composer install
+```
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+**Setup database:**
 
-*********
-Resources
-*********
+1. Buat database baru di MySQL
+2. Import file SQL (jika tersedia di folder database atau docs)
+3. Konfigurasi koneksi di `application/config/database.php`:
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+```php
+$db['default'] = array(
+    'hostname' => 'localhost',
+    'username' => 'root',
+    'password' => '',
+    'database' => 'nama_database',
+    'dbdriver' => 'mysqli',
+    ...
+);
+```
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+**Konfigurasi aplikasi:**
 
-***************
-Acknowledgement
-***************
+Sesuaikan `application/config/config.php`:
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+```php
+$config['base_url'] = 'http://localhost/muscab/';
+```
+
+## Menjalankan Aplikasi
+
+Letakkan folder project di direktori web server (misal: `htdocs` untuk XAMPP) dan akses melalui browser:
+
+```
+http://localhost/muscab/
+```
+
+## Modul
+
+| Modul | Deskripsi |
+|-------|-----------|
+| Anggota | Pendataan dan manajemen anggota |
+| Jamaah | Data jamaah organisasi |
+| Kehadiran | Pencatatan kehadiran anggota |
+| Pekerjaan | Data pekerjaan anggota |
+| Pendidikan | Riwayat pendidikan anggota |
+| Pendapatan | Data pendapatan anggota |
+| Tanggungan | Data tanggungan/keluarga anggota |
+| NPA | Nomor Pokok Anggota |
+| Riwayat | Histori aktivitas |
+| Formulir | Manajemen formulir pendaftaran |
+
+## Lisensi
+
+[MIT](license.txt)
